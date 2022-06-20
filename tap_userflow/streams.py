@@ -18,8 +18,10 @@ class ContentStream(UserFlowStream):
     name = "content"
     path = "/content"
     primary_keys = ["id"]
-    replication_key = "created_at"
+    replication_key = "id"
+    order_by_key = "created_at"
     schema_filepath = SCHEMAS_DIR / "content.json"
-    is_timestamp_replication_key = True
+    is_timestamp_replication_key = False
     replication_method = "INCREMENTAL"
-    is_sorted = True
+    is_sorted = False
+    check_sorted = False

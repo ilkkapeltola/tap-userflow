@@ -47,7 +47,7 @@ class UserFlowStream(RESTStream):
         # If not using an authenticator, you may also provide inline auth headers:
         # headers["Private-Token"] = self.config.get("auth_token")
         return headers
-
+        
     def get_next_page_token(
         self, response: requests.Response, previous_token: Optional[Any]
     ) -> Optional[Any]:
@@ -84,30 +84,20 @@ class UserFlowStream(RESTStream):
         """Return a dictionary of values to be used in URL parameterization."""
         params: dict = {}
         
+        starting_key = self.get_starting_replication_key_value(context)
+
+        if (starting_key):
+            params["starting_after"] = starting_key
+        
         if next_page_token:
             parsed = parse_qs(next_page_token)
             params["starting_after"] = parsed['starting_after']
-        if self.replication_key:
-            params["order_by"] = self.replication_key
+        if self.order_by_key:
+            params["order_by"] = self.order_by_key
 
         return params
-
-    def prepare_request_payload(
-        self, context: Optional[dict], next_page_token: Optional[Any]
-    ) -> Optional[dict]:
-        """Prepare the data payload for the REST API request.
-
-        By default, no payload will be sent (return None).
-        """
-        # TODO: Delete this method if no payload is required. (Most REST APIs.)
-        return None
 
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
         """Parse the response and return an iterator of result rows."""
         # TODO: Parse response body and return a set of records.
-        yield from extract_jsonpath(self.records_jsonpath, input=response.json())
-
-    def post_process(self, row: dict, context: Optional[dict]) -> dict:
-        """As needed, append or transform raw data to match expected structure."""
-        # TODO: Delete this method if not needed.
-        return row
+        yield from extract_jsonpath(self.records_jsonpath, input=response.json())        
