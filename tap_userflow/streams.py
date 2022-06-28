@@ -23,5 +23,17 @@ class ContentStream(UserFlowStream):
     schema_filepath = SCHEMAS_DIR / "content.json"
     is_timestamp_replication_key = False
     replication_method = "INCREMENTAL"
-    is_sorted = False
+    is_sorted = True
+    check_sorted = False
+
+class ContentSessionStream(UserFlowStream):
+    name = "content_session"
+    path = "/content_sessions"
+    primary_keys = ["id"]
+    replication_key = "id"
+    order_by_key = "last_activity_at"
+    schema_filepath = SCHEMAS_DIR /"content-session.json"
+    is_timestamp_replication_key = False
+    replication_method = "INCREMENTAL"
+    is_sorted = True
     check_sorted = False

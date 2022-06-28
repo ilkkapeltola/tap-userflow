@@ -6,13 +6,15 @@ from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
 # TODO: Import your custom stream types here:
 from tap_userflow.streams import (
+    ContentSessionStream,
     UserFlowStream,
     ContentStream
 )
 # TODO: Compile a list of custom stream types here
 #       OR rewrite discover_streams() below with your custom logic.
 STREAM_TYPES = [
-    ContentStream
+    ContentStream,
+    ContentSessionStream
 ]
 
 
