@@ -2,22 +2,26 @@
     "properties": {
         "id": {"type": "string"},
         "object": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
-        "answers": {"type": "any"},
+        "answers": {},
         "completed_at":  {
-            "type": "string",
-            "format": "datetime"
+            "anyOf": [
+                {    "type": "string",
+                    "format": "datetime"
+                },
+                {   "type": "null" }
+                ]
             },
 
         "completed": { "anyOf": [ {"type": "boolean"}, {"type": "null"} ] },
         "content_id": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
-        "content": {"type": "any"},
+        "content": {},
         "created_at":  {
             "type": "string",
             "format": "datetime"
             },
 
         "group_id": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
-        "group": {"type": "any"},
+        "group": {},
         "last_activity_at":  {
             "type": "string",
             "format": "datetime"
@@ -26,7 +30,7 @@
         "launcher_activated": { "anyOf": [ {"type": "boolean"}, {"type": "null"} ] },
         "progress": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
         "user_id": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
-        "user": {"type": "any"},
+        "user": {},
         "version_id": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
         "version": { "anyOf": [ {"type": "string"}, {"type": "null"} ] }
     }
