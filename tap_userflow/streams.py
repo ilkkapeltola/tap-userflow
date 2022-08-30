@@ -35,5 +35,5 @@ class ContentSessionStream(UserFlowStream):
     schema_filepath = SCHEMAS_DIR /"content-session.json"
     is_timestamp_replication_key = False
     replication_method = "INCREMENTAL"
-    is_sorted = False 
+    is_sorted = True
     check_sorted = False
