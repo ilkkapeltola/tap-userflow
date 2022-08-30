@@ -3,9 +3,9 @@
         "id": {"type": "string"},
         "object": { "anyOf": [ {"type": "string"}, {"type": "null"} ] },
         "answers": { 
-            "type": "array",
+            "type": ["array", "null"],
             "items": {
-                "type": "object"
+                "type": ["null", "object"]
             }
         },
         "completed_at":  {
