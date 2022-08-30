@@ -28,7 +28,7 @@ class ContentStream(UserFlowStream):
 
 class ContentSessionStream(UserFlowStream):
     name = "content_session"
-    path = "/content_sessions"
+    path = "/content_sessions?expand[]=answers&expand[]=content&expand[]=group&expand[]=version"
     primary_keys = ["id"]
     replication_key = "id"
     order_by_key = "last_activity_at"
